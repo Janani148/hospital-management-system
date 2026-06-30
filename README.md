@@ -1,3 +1,4 @@
+Intern ID: CITS3376
 # Hospital Management System (Full Stack Intern Project)
 
 A simple full-stack CRUD application for managing patients, doctors, and appointments. Built to be easy to read, run, and extend — good as an intern-level portfolio/learning project.
