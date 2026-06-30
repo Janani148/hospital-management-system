@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hospital Management System</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">🏥 Hospital Management System</div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn" data-tab="patients">Patients</button>
+      <button class="tab-btn" data-tab="doctors">Doctors</button>
+      <button class="tab-btn" data-tab="appointments">Appointments</button>
+    </nav>
+  </header>
+
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tab-panel active">
+      <div class="panel-header">
+        <h2>Dashboard</h2>
+        <button class="btn secondary" id="refreshDashboard">⟳ Refresh</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card clickable" data-goto="patients">
+          <span class="stat-value" id="statPatients">0</span>
+          <span class="stat-label">Patients</span>
+        </div>
+        <div class="stat-card clickable" data-goto="doctors">
+          <span class="stat-value" id="statDoctors">0</span>
+          <span class="stat-label">Doctors</span>
+        </div>
+        <div class="stat-card clickable" data-goto="appointments">
+          <span class="stat-value" id="statAppointments">0</span>
+          <span class="stat-label">Total Appointments</span>
+        </div>
+        <div class="stat-card clickable" data-goto="appointments">
+          <span class="stat-value" id="statScheduled">0</span>
+          <span class="stat-label">Scheduled</span>
+        </div>
+        <div class="stat-card clickable" data-goto="appointments">
+          <span class="stat-value" id="statCompleted">0</span>
+          <span class="stat-label">Completed</span>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+
+        <div class="dash-card">
+          <h3>Appointment Status</h3>
+          <div id="statusChart" class="bar-chart"></div>
+        </div>
+
+        <div class="dash-card">
+          <h3>Patients by Gender</h3>
+          <div id="genderChart" class="bar-chart"></div>
+        </div>
+
+        <div class="dash-card">
+          <h3>Doctors by Specialization</h3>
+          <div id="specChart" class="bar-chart"></div>
+        </div>
+
+        <div class="dash-card wide">
+          <div class="panel-header tight">
+            <h3>Upcoming Appointments</h3>
+          </div>
+          <table class="data-table compact">
+            <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+            <tbody id="upcomingTableBody"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="quick-actions">
+        <button class="btn primary" id="qaAddPatient">+ Add Patient</button>
+        <button class="btn primary" id="qaAddDoctor">+ Add Doctor</button>
+        <button class="btn primary" id="qaBookAppointment">+ Book Appointment</button>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section id="patients" class="tab-panel">
+      <div class="panel-header">
+        <h2>Patients</h2>
+        <button class="btn primary" id="openAddPatient">+ Add Patient</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th><th>Blood Grp</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="patientsTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- DOCTORS -->
+    <section id="doctors" class="tab-panel">
+      <div class="panel-header">
+        <h2>Doctors</h2>
+        <button class="btn primary" id="openAddDoctor">+ Add Doctor</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Specialization</th><th>Phone</th><th>Available Days</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="doctorsTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section id="appointments" class="tab-panel">
+      <div class="panel-header">
+        <h2>Appointments</h2>
+        <button class="btn primary" id="openAddAppointment">+ Book Appointment</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="appointmentsTableBody"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Form</h3>
+        <button id="modalClose" class="modal-close">&times;</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
